@@ -47,10 +47,24 @@ function updatePersonas(req,res){
    })
 }
 
+function buscarOnePersona(req,res){
+const {id}=req.params;
+
+Personas.findById(id, (error, storedPersona)=>{
+    if(error){
+        res.status(400).send({msg: "No se encunetra el dato"})
+    }else{
+        res.status(200).send(storedPersona);
+    }
+})
+}
+
+
 
 module.exports={
     createPersonas,
     getPersonas,
     deletePersona,
-    updatePersonas
+    updatePersonas,
+    buscarOnePersona
 }
