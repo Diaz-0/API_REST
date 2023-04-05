@@ -5,7 +5,7 @@ const DB_NAME="aplicacionweb";
 const DB_PORT="27017";
 
 const API_VERSION="V1";
-const IP_SERVER="localhost";
+const IP_SERVER="127.0.0.1";
 
 module.exports={
     DB_USER,

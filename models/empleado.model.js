@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 
-const Personas=mongoose.Schema({
+const Empleados=mongoose.Schema({
     curp:{
         type:String,
         unique:true
@@ -10,9 +10,11 @@ const Personas=mongoose.Schema({
     apellidos: String,
     fechana: Date,
     sexo: String,
+    trabajo: String,
     telefono: Number,
     email:String,
+    password: String,
     created_at:Date
 })
 
-module.exports=mongoose.model("Personas", Personas);
+module.exports=mongoose.model("Empleados", Empleados);
