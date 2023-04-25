@@ -1,62 +1,50 @@
-const Empleados=require("../models/empleado.model");
+const Empleado = require("../models/empleado.model");
 
- function createEmpleados(req,res){
-    const empleados=new Empleados(req.body);
-   
-    empleados.save((error, empleadoStored)=>{
-        if(error){
-            res.status(400).send({msg: "Error al guardar los datos"})
-        }else{
-            res.status(200).send(empleadoStored)
-        }
-    })
-}
-
-function getEmpleados(req,res){
-    Empleados.find((error, empleadosStored)=>{
-        if(error){
-            res.status(500).send({msg:"No hay datos que consultar"})
-        }else{
-            res.status(200).send(empleadosStored)
-        }
-    })
-}
-
- function deleteEmpleado(req,res){
-    const {id}=req.params;
-
-    Empleados.findByIdAndDelete(id, (error)=>{
-        if(error){
-            res.status(400).send({msg:"Error al eliminar el dato"})
-        }else{
-            res.status(200).send({msg: "Empleado eliminado"})
-        }
-    })
-}
-
-function updateEmpleados(req,res){
-   const {id}=req.params;
-   const datosEmpleado=req.body;
-
-   Empleados.findByIdAndUpdate({curp:id},datosEmpleado, (error)=>{
-    if(error){
-        res.status(400).send({msg: "Datos no actualizados"})
-    }else{
-        res.status(200).send({msg: "Los datos fueron actualizados correctamente"})
+async function createEmpleado(req,res){
+    try {
+        const empleado = new Empleado(req.body);
+        const empleadoStored = await empleado.save();
+        res.status(200).send(empleadoStored);
+    } catch (error) {
+        res.status(400).send({msg: "Error al guardar los datos"});
     }
-   })
 }
 
-async function getEmpleado(req,res){
-    console.log("Obtener los empleados");
+async function getEmpleados(req,res){
+    try {
+        const empleadosStored = await Empleado.find();
+        res.status(200).send(empleadosStored);
+    } catch (error) {
+        res.status(500).send({msg: "No hay datos que consultar"});
+    }
 }
 
+async function deleteEmpleado(req,res){
+    try {
+        const {id} = req.params;
+        await Empleado.findByIdAndDelete(id);
+        res.status(200).send({msg: "Empleado eliminado"});
+    } catch (error) {
+        res.status(400).send({msg: "Error al eliminar el empleado"});
+    }
+}
 
+async function updateEmpleado(req, res) {
+    try {
+      const { id } = req.params;
+      const empleado = await Empleado.findByIdAndUpdate(id, req.body, {
+        new: true
+      });
+      res.status(200).send(empleado);
+    } catch (error) {
+      res.status(400).send({ msg: "Error al actualizar los datos" });
+    }
+  }
+  
 
-module.exports={
-    createEmpleados,
+module.exports = {
+    createEmpleado,
     getEmpleados,
     deleteEmpleado,
-    updateEmpleados,
-    getEmpleado
-}
+    updateEmpleado
+};

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("./user.models");
 
-const EmployeeSchema = mongoose.Schema({
+const EmployerSchema = mongoose.Schema({
   curp: {
     type: String,
     unique: true,
@@ -9,9 +9,7 @@ const EmployeeSchema = mongoose.Schema({
   name: String,
   lastName: String,
   birthDate: Date,
-  address: String,
   gender: String,
-  job: String,
   phone: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -21,5 +19,5 @@ const EmployeeSchema = mongoose.Schema({
   created_at: Date,
 });
 
-module.exports = mongoose.model("Employee", EmployeeSchema);
+module.exports = mongoose.model("Employer", EmployerSchema);
 
