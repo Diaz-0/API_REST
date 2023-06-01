@@ -9,6 +9,7 @@ const EmployerSchema = mongoose.Schema({
   name: String,
   lastName: String,
   birthDate: Date,
+  address: String,
   gender: String,
   phone: String,
   user: {
@@ -16,7 +17,10 @@ const EmployerSchema = mongoose.Schema({
     ref: "User",
     unique: true,
   },
-  created_at: Date,
+  created: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model("Employer", EmployerSchema);

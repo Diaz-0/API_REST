@@ -11,14 +11,16 @@ const EmployeeSchema = mongoose.Schema({
   birthDate: Date,
   address: String,
   gender: String,
-  job: String,
   phone: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     unique: true,
   },
-  created_at: Date,
+  created: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model("Employee", EmployeeSchema);

@@ -7,7 +7,6 @@ const { API_VERSION } = require("./constants");
 const authRoutes = require("./routes/auth.routes");
 const profileRoutes = require("./routes/profile.routes");
 const jobRoutes = require("./routes/job.routes");
-const dashboardRoutes = require("./routes/dashboard.routes");
 
 const app = express();
 
@@ -19,6 +18,5 @@ app.use(cors());
 app.use(`/api/${API_VERSION}/auth`, authRoutes);
 app.use(`/api/${API_VERSION}/profile`, profileRoutes);
 app.use(`/api/${API_VERSION}/jobs`, jobRoutes);
-app.use(`/api/${API_VERSION}/dashboard`, dashboardRoutes);
 
 module.exports = app;

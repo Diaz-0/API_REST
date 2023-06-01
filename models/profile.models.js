@@ -6,11 +6,19 @@ const ProfileSchema = mongoose.Schema({
     ref: "User",
     unique: true,
   },
+  role: String,
+  curp: String,
   name: String,
   lastName: String,
-  age: Number,
+  birthDate: Date,
   address: String,
-  phoneNumber: String,
+  gender: String,
+  phone: String,
+  created: {
+    type: Date,
+    default: Date.now
+  }
 });
+
 
 module.exports = mongoose.model("Profile", ProfileSchema);

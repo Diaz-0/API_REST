@@ -1,20 +1,9 @@
 const mongoose = require("mongoose");
 
 const applicationSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-  },
-  resume: {
-    type: String,
+  employeeProfile: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Profile",
     required: true,
   },
   job: {
@@ -22,7 +11,13 @@ const applicationSchema = new mongoose.Schema({
     ref: "Job",
     required: true,
   },
+  notification: {
+    type: String,
+    enum: ["Aceptado", "Rechazado", "Pendiente"],
+    default: "Pendiente",
+  },
 });
+
 
 const Application = mongoose.model("Application", applicationSchema);
 

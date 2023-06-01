@@ -16,6 +16,14 @@ mongoose.connect(`mongodb://${IP_SERVER}:${DB_PORT}/${DB_NAME}`, (error)=>{
     if(error) throw error;
 })
 
+/*/mongoose.connect(`mongodb+srv://diazmontejo125:L98fpL1iLUt2O8eD@cluster0.k6vctww.mongodb.net/${DB_NAME}`, (error)=>{
+    if(error) throw error;
+})/*/
+
+/*/mongoose.connect(process.eventNames.MONGODB_URI)
+.then(() => console.log("Conectado a MongoDB Atlas"))
+.catch((error) => console.error(error));/*/
+
 
 app.listen(port, ()=>{
     console.log("API REST  DE LA APP FUNCIONANDO");
